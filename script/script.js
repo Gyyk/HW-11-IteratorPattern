@@ -14,25 +14,55 @@ const fibonacci = {
 
 const Iterator = function () {
     this.index = 0;
-    this.fibonacci = fibonacci
+    this.fibonacci = fibonacci;
+    this.iteratorEl = document.querySelector(".iterator");
+    this.iteratorEl.innerText = this.index;
 };
 
 Iterator.prototype = {
     current: function(){
-        return this.fibonacci[this.index]
+        return this.iteratorEl.innerText = this.fibonacci[this.index]
+        // return this.fibonacci[this.index]
     },
     next: function () {
-        return this.fibonacci[this.index++]
+        return this.iteratorEl.innerText = this.fibonacci[this.index++]
+        // return this.fibonacci[this.index++]
     },
     rewind: function () {
         this.index = 0;
-        return this.fibonacci[this.index]
+        return this.iteratorEl.innerText = this.fibonacci[this.index]
+        // return this.fibonacci[this.index]
     },
     key: function () {
-        return Object.keys(this.fibonacci)[this.index]
+        alert(Object.keys(this.fibonacci)[this.index])
     },
     prev: function () {
-        return this.fibonacci[this.index--]
+        return this.iteratorEl.innerText = this.fibonacci[this.index--]
     }
 };
 const iterator = new Iterator();
+
+const container = document.querySelector("#container");
+class Button {
+    constructor(name, eventFunc){
+        this.name = name;
+        this.eventFunc = eventFunc;
+        this.render();
+        this.btnEvent();
+    }
+    btnEvent() {
+        this.buttonEl.addEventListener("click", this.eventFunc)
+    }
+    render() {
+        this.buttonEl = document.createElement("button");
+        this.buttonEl.classList.add("button");
+        this.buttonEl.innerText = `${this.name}`;
+        container.appendChild(this.buttonEl)
+    }
+}
+
+const current = new Button("Update current", function (){iterator.current()});
+const next = new Button("Next", function (){iterator.next()});
+const rewind = new Button("Rewind", function (){iterator.rewind()});
+const key = new Button("Key", function (){iterator.key()});
+const prev = new Button("Previous", function (){iterator.prev()});
