@@ -16,7 +16,7 @@ const Iterator = function () {
     this.index = 0;
     this.fibonacci = fibonacci;
     this.iteratorEl = document.querySelector(".iterator");
-    this.iteratorEl.innerText = this.index;
+    this.iteratorEl.innerText = this.fibonacci[this.index];
 };
 
 Iterator.prototype = {
@@ -25,7 +25,8 @@ Iterator.prototype = {
         // return this.fibonacci[this.index]
     },
     next: function () {
-        return this.iteratorEl.innerText = this.fibonacci[this.index++]
+        this.iteratorEl.innerText = this.fibonacci[this.index++];
+        iterator.current()
         // return this.fibonacci[this.index++]
     },
     rewind: function () {
@@ -37,7 +38,8 @@ Iterator.prototype = {
         alert(Object.keys(this.fibonacci)[this.index])
     },
     prev: function () {
-        return this.iteratorEl.innerText = this.fibonacci[this.index--]
+        this.iteratorEl.innerText = this.fibonacci[this.index--];
+        iterator.current()
     }
 };
 const iterator = new Iterator();
@@ -61,7 +63,7 @@ class Button {
     }
 }
 
-const current = new Button("Update current", function (){iterator.current()});
+// const current = new Button("Update current", function (){iterator.current()});
 const next = new Button("Next", function (){iterator.next()});
 const rewind = new Button("Rewind", function (){iterator.rewind()});
 const key = new Button("Key", function (){iterator.key()});
